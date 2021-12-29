@@ -21,7 +21,7 @@ import java.util.Properties;
 @Configuration
 @PropertySource("classpath:hiber.properties")
 @EnableTransactionManagement
-@ComponentScan(value = "web")
+@ComponentScan("web")
 public class HiberConfig {
 
     @Autowired
