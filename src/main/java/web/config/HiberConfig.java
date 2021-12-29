@@ -38,7 +38,7 @@ public class HiberConfig {
     }
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean getEntityFactory() {
+    public LocalContainerEntityManagerFactoryBean getEntityManagerFactory() {
         LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
         factoryBean.setDataSource(getDataSource());
         factoryBean.setPackagesToScan("web.model");
@@ -53,13 +53,8 @@ public class HiberConfig {
     @Bean
     public PlatformTransactionManager transactionManager() {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
-        transactionManager.setEntityManagerFactory(getEntityFactory().getObject());
+        transactionManager.setEntityManagerFactory(getEntityManagerFactory().getObject());
         return transactionManager;
-    }
-
-    @Bean
-    public PersistenceExceptionTranslationPostProcessor exceptionTranslation(){
-        return new PersistenceExceptionTranslationPostProcessor();
     }
 
     private Properties getProperties() {
