@@ -6,7 +6,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
-import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -41,12 +40,11 @@ public class HiberConfig {
     public LocalContainerEntityManagerFactoryBean getEntityManagerFactory() {
         LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
         factoryBean.setDataSource(getDataSource());
-        factoryBean.setPackagesToScan("web.model");
+        factoryBean.setPackagesToScan("web.models");
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         factoryBean.setJpaVendorAdapter(vendorAdapter);
         factoryBean.setJpaProperties(getProperties());
-
         return factoryBean;
     }
 
@@ -65,7 +63,3 @@ public class HiberConfig {
         return properties;
     }
 }
-/*
-Внесите изменения в конфигурацию для работы с базой данных.
-Вместо SessionFactory должен использоваться EntityManager.
- */
