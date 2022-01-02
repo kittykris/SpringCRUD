@@ -26,8 +26,9 @@ public class WebConfig implements WebMvcConfigurer {
     public SpringResourceTemplateResolver templateResolver() {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
         templateResolver.setApplicationContext(applicationContext);
-        templateResolver.setPrefix("/WEB-INF/pages");
-        templateResolver.setSuffix("html");
+        templateResolver.setCharacterEncoding("UTF-8");
+        templateResolver.setPrefix("/WEB-INF/pages/");
+        templateResolver.setSuffix(".html");
         return templateResolver;
     }
 
@@ -43,10 +44,7 @@ public class WebConfig implements WebMvcConfigurer {
     public void configureViewResolvers(ViewResolverRegistry resolverRegistry) {
         ThymeleafViewResolver resolver = new ThymeleafViewResolver();
         resolver.setTemplateEngine(templateEngine());
+        resolver.setCharacterEncoding("UTF-8");
         resolverRegistry.viewResolver(resolver);
     }
 }
-/*
-Конфигурация Spring через JavaConfig и аннотации,
-по аналогии с предыдущими проектами. Без использования xml. Без Spring Boot.
- */
