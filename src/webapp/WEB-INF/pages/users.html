@@ -7,7 +7,7 @@
 <body>
 <div th:align="center">
     <h2>Список пользователей</h2>
-    <a th:href="@{/add}">Add User</a>
+    <a th:href="@{/new_add}">Add User</a>
     <br/><br/>
     <table th:border="1" th:cellpadding="12">
         <tr>
@@ -15,7 +15,6 @@
             <th>Last Name</th>
             <th>Age</th>
             <th>City</th>
-            <th>Actions</th>
         </tr>
         <tbody>
         <tr th:each="user: ${userList}">
@@ -23,11 +22,20 @@
             <td th:text="${user.getLastName}">Last Name</td>
             <td th:text="${user.getAge}">Age</td>
             <td th:text="${user.getCity}">City</td>
-            <td><a th:href="@{/update/{userId}(userId=${user.getId})}"> Edit </a></td>
-            <td><a th:href="@{/delete/{userId}(userId=${user.getId})}"> Delete </a></td>
+            <td>
+                <form th:method="get" th:action="@{/{id}/edit(id=${user.getId})}">
+                    <input type="submit" th:value="Edit">
+                </form>
+            </td>
+            <td>
+                <form th:method="delete" th:action="@{/{id}(id=${user.getId})}">
+                    <input type="submit" th:value="Delete">
+                </form>
+            </td>
         </tr>
         </tbody>
     </table>
+
 </div>
 </body>
 </html>
