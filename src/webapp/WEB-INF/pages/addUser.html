@@ -11,12 +11,16 @@
     <form th:action="@{/save}" th:object="${newUser}" th:method="post">
         <label for="firstName">First Name: </label>
         <input type="text" th:field="*{firstName}" id="firstName">
+        <br/><br/>
         <label for="lastName">Last Name: </label>
         <input type="text" th:field="*{lastName}" id="lastName">
+        <br/><br/>
         <label for="age">Age: </label>
         <input type="text" th:field="*{age}" id="age">
+        <br/><br/>
         <label for="name">City: </label>
         <input type="text" th:field="*{city}" id="name">
+        <br/><br/>
         <p><input type="submit" value="Save"></p>
     </form>
 </div>

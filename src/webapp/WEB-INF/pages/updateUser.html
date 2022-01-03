@@ -5,21 +5,24 @@
     <title>Изменение пользователя</title>
 </head>
 <body>
-<h2>Please enter User's details to update:</h2>
-<br/>
-<form th:action="@{/{id}(id=${updateUser.getId})}" th:object="${updateUser}" th:method="patch">
-    <label for="firstName">First Name: </label>
-    <input type="text" th:field="*{firstName}" id="firstName">
+<div th:align="center">
+    <h2>Please enter User's details to update:</h2>
     <br/>
-    <label for="lastName">Last Name: </label>
-    <input type="text" th:field="*{lastName}" id="lastName">
-    <br/>
-    <label for="age">Age: </label>
-    <input type="text" th:field="*{age}" id="age">
-    <br/>
-    <label for="name">City: </label>
-    <input type="text" th:field="*{city}" id="name">
-    <p><input type="submit" value="Update"></p>
-</form>
+    <form th:action="@{/{id}(id=${updateUser.getId})}" th:object="${updateUser}" th:method="patch">
+        <label for="firstName">First Name: </label>
+        <input type="text" th:field="*{firstName}" id="firstName">
+        <br/><br/>
+        <label for="lastName">Last Name: </label>
+        <input type="text" th:field="*{lastName}" id="lastName">
+        <br/><br/>
+        <label for="age">Age: </label>
+        <input type="text" th:field="*{age}" id="age">
+        <br/><br/>
+        <label for="name">City: </label>
+        <input type="text" th:field="*{city}" id="name">
+        <br/>
+        <p><input type="submit" value="Update"></p>
+    </form>
+</div>
 </body>
 </html>
