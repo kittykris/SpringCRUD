@@ -1,8 +1,10 @@
 package web.config;
 
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+import javax.servlet.FilterRegistration;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
@@ -11,6 +13,7 @@ public class ApplicationInit extends AbstractAnnotationConfigDispatcherServletIn
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
         super.onStartup(servletContext);
+        encodingFilter(servletContext);
         hiddenFilter(servletContext);
     }
 
@@ -31,6 +34,13 @@ public class ApplicationInit extends AbstractAnnotationConfigDispatcherServletIn
 
     private void hiddenFilter(ServletContext context) {
         context.addFilter("hiddenFilter", new HiddenHttpMethodFilter())
-                .addMappingForUrlPatterns(null, true, "/*");;
+                .addMappingForUrlPatterns(null, true, "/*");
+    }
+
+    private void encodingFilter(ServletContext context) {
+        FilterRegistration.Dynamic encodingFilter = context.addFilter("encodingFilter", new CharacterEncodingFilter());
+        encodingFilter.setInitParameter("encoding", "UTF-8");
+        encodingFilter.setInitParameter("forceEncoding", "true");
+        encodingFilter.addMappingForUrlPatterns(null, true, "/*");
     }
 }
